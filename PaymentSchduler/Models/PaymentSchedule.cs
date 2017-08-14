@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using PaymentSchduler.ViewModels;
 
 namespace PaymentSchduler.Models
 {
@@ -16,6 +17,7 @@ namespace PaymentSchduler.Models
         public decimal VehiclePrice { get; set; }
         [Required]
         [DataType(DataType.Date)]
+        [FutureDate(ErrorMessage = "Date should be in the future.")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DeliveryDate { get; set; }
 

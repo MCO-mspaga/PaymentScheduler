@@ -36,7 +36,12 @@ namespace PaymentSchduler.Controllers
                 DeliveryDate = model.DeliveryDate
             };
 
-            return RedirectToAction("Index", "Home");
+            //_context.PaymentSchedules.Add(paymentSchedule);
+            //  _context.SaveChanges();
+
+            // return RedirectToAction("Index", "Home");
+
+            return View("Index", model);
         }
     }
 }
