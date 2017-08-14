@@ -12,10 +12,10 @@ namespace PaymentSchduler.Models
         public int Id { get; set; }
         [Required]
         [Display(Name = "Deposit Amount")]
-        public decimal DepositAmount { get; set; }
+        public decimal DepositAmount { get; private set; }
 
         [Display(Name = "Vehicle Price")]
-        [Required]
+        [Required(ErrorMessage = "Value should be at least 15% of Vehicle Price")]
         public decimal VehiclePrice { get; set; }
 
         [Required]
@@ -27,5 +27,17 @@ namespace PaymentSchduler.Models
 
         [Display(Name = "Financial Option")]
         public int FinanceOption { get; set; }               
+
+
+
+        public void SetDepositAmount(decimal deposit)
+        {
+            decimal requiredDepositMin = VehiclePrice * 0.15m; 
+
+            if(deposit >= requiredDepositMin)
+            {
+                DepositAmount = deposit;
+            }
+        }
     }
 }

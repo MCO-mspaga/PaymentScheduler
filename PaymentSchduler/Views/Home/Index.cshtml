@@ -39,7 +39,7 @@
 
     <div class="form-group">
         @Html.LabelFor(m => m.DeliveryDate)
-        @Html.EditorFor(m => m.DeliveryDate, new { htmlAttributes = new { @class = "form-control" } , placeholder = "eg 1 Jan 2015" })
+        @Html.EditorFor(m => m.DeliveryDate, new { htmlAttributes = new { @class = "form-control" }  })
         @Html.ValidationMessageFor(m => m.DeliveryDate)
     </div>
 
