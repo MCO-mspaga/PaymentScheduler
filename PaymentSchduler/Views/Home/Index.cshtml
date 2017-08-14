@@ -1,0 +1,41 @@
+﻿@model PaymentSchduler.Models.PaymentSchedule
+
+
+
+
+
+<h2> PaymentSchedule </h2>
+
+
+@using (Html.BeginForm("Create", "Home"))
+{
+    @Html.HiddenFor(m => m.Id)
+    <div class="form-group">
+        @Html.LabelFor(m => m.VehiclePrice)
+        @Html.TextBoxFor(m => m.VehiclePrice, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.VehiclePrice)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.DepositAmount)
+        @Html.TextBoxFor(m => m.DepositAmount, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.DepositAmount)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.FinanceOption)
+        @Html.TextBoxFor(m => m.FinanceOption, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.FinanceOption)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.DeliveryDate)
+        @Html.EditorFor(m => m.DeliveryDate, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.DeliveryDate)
+    </div>
+
+
+    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+
+}
+
