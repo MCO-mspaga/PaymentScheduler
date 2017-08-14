@@ -21,25 +21,16 @@ namespace PaymentSchduler.Controllers
 
         public ActionResult Index()
         {
-
             return View();
         }
 
         [HttpPost]
         public ActionResult Create(PaymentSchedule model)
         {
-            var paymentSchedule = new PaymentSchedule
+            if (!ModelState.IsValid)
             {
-                VehiclePrice = model.VehiclePrice,
-                DepositAmount = model.DepositAmount,
-                FinanceOption = model.FinanceOption,
-                DeliveryDate = model.DeliveryDate
-            };
-
-            //_context.PaymentSchedules.Add(paymentSchedule);
-            //  _context.SaveChanges();
-
-            // return RedirectToAction("Index", "Home");
+                return View("Index", model);
+            }           
 
             return View("Index", model);
         }
