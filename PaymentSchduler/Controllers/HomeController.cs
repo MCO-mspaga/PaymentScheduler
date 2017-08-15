@@ -35,9 +35,10 @@ namespace PaymentSchduler.Controllers
 
             PaymentSchedule paymentSchedule = new PaymentSchedule(viewModel);
 
-            ArrangeMonthlyPayments(
-                SubtractDepositFromFullPrice(viewModel.VehiclePrice, viewModel.DepositAmount),
-                paymentSchedule.FinanceOptionInMonths);
+            PreparePaymentSchedule(
+                SubtractDepositFromFullPrice(paymentSchedule.VehiclePrice, paymentSchedule.DepositAmount),
+                paymentSchedule.FinanceOptionInMonths,
+                paymentSchedule.DeliveryDate);
 
             return View("Index", viewModel);
         }
@@ -46,47 +47,12 @@ namespace PaymentSchduler.Controllers
         {
             return fullPrice - depositAmount;
         }
-
-        private List<decimal> ArrangeMonthlyPayments(decimal vehiclePrice, int financialOptionInMonths)
-        {
-            List<decimal> monthlyPayments = new List<decimal>();
-
-            decimal decreasingVehiclePrice = vehiclePrice;
-
-            for (int month = 1; month <= financialOptionInMonths; month++)
-            {
-                decimal monthlyCost = CalculateMonthlyPayments(vehiclePrice, financialOptionInMonths);
-
-                if (month == 1)
-                {
-                    decimal num = Math.Round(vehiclePrice % financialOptionInMonths, 2);
-                }
-
-                if (month == financialOptionInMonths)
-                {
-                    if (decreasingVehiclePrice > monthlyCost || decreasingVehiclePrice < monthlyCost)
-                    {
-                        monthlyCost = decreasingVehiclePrice;
-                        decreasingVehiclePrice -= decreasingVehiclePrice;
-                    }
-                    else
-                    {
-                        decreasingVehiclePrice -= monthlyCost;
-                    }
-                }
-                else
-                {
-                    decreasingVehiclePrice -= monthlyCost;
-                }
-
-                monthlyPayments.Add(monthlyCost);
-            }
-            return monthlyPayments;
-        }
+              
 
         private decimal CalculateMonthlyPayments(decimal vehiclePrice, int financialOptionInMonths)
         {
-            return Math.Round(vehiclePrice / financialOptionInMonths, 2);
+            int decimalPlaces = 2;
+            return Math.Round(vehiclePrice / financialOptionInMonths, decimalPlaces);
         }
 
         private decimal SubtractPaymentFromVehiclePrice(decimal vehiclePrice, decimal monthlyCost)
@@ -94,60 +60,36 @@ namespace PaymentSchduler.Controllers
             return monthlyCost;
         }
 
-        private void PreparePaymentSchedule(decimal vehiclePrice, int financialOptionInMonths, DateTime deliveryDate)
+        private List<PaymentAndDate> PreparePaymentSchedule(decimal vehiclePrice, int financialOptionInMonths, DateTime deliveryDate)
         {
             List<PaymentAndDate> paymentScheduleBreakDown = new List<PaymentAndDate>();
             DateTime datePaymentsStart = FindPaymentStartDate(deliveryDate);
-            // this is for payments
+   
             decimal decreasingVehiclePrice = vehiclePrice;
             decimal monthlyPayment = CalculateMonthlyPayments(vehiclePrice, financialOptionInMonths);
-            //////
-
+            
             for (int month = 1; month <= financialOptionInMonths; month++)
             {
+                //ArrangeMonthlyPayments
                 PaymentAndDate paymentAndDate = new PaymentAndDate();
-
                 DateTime firstMondayOfMonth;
 
                 paymentAndDate.PaymentDate = FindFirstMondayOfMonth(datePaymentsStart, out firstMondayOfMonth);
-                
-                //for payments 
                 paymentAndDate.PaymentValue = monthlyPayment;
-           
-                if (month == financialOptionInMonths)
-                {
-                    if (decreasingVehiclePrice > paymentAndDate.PaymentValue || decreasingVehiclePrice < paymentAndDate.PaymentValue)
-                    {
-                        paymentAndDate.PaymentValue = decreasingVehiclePrice;
-                        decreasingVehiclePrice -= decreasingVehiclePrice;
-                    }
-                    else
-                    {
-                        decreasingVehiclePrice -= paymentAndDate.PaymentValue;
-                    }
-                }
-                else
-                {
-                    decreasingVehiclePrice -= paymentAndDate.PaymentValue;
-                }
-
+                           
+                if (month == financialOptionInMonths)                
+                    paymentAndDate.PaymentValue = EnsureScheduleHasBeenCompletelyPaid(decreasingVehiclePrice, paymentAndDate.PaymentValue);
+                
+                decreasingVehiclePrice -= paymentAndDate.PaymentValue;
                 paymentScheduleBreakDown.Add(paymentAndDate);
-
             }
+            return paymentScheduleBreakDown;
         }
 
+       
         private decimal EnsureScheduleHasBeenCompletelyPaid(decimal decreasingVehiclePrice, decimal paymentValue)
         {
-            if (decreasingVehiclePrice > paymentValue || decreasingVehiclePrice < paymentValue)
-            {
-                paymentValue = decreasingVehiclePrice;
-                decreasingVehiclePrice -= decreasingVehiclePrice;
-            }
-            else
-            {
-                decreasingVehiclePrice -= paymentValue;
-            }
-
+           return decreasingVehiclePrice > paymentValue || decreasingVehiclePrice < paymentValue ? decreasingVehiclePrice : paymentValue;
         }
 
         private DateTime FindPaymentStartDate(DateTime deliveryDate)
@@ -173,7 +115,6 @@ namespace PaymentSchduler.Controllers
             if (datePaymentsStart.DayOfWeek == DayOfWeek.Monday)
             {
                 firstMonday = datePaymentsStart;
-
                 int next = DateTime.DaysInMonth(datePaymentsStart.Year, datePaymentsStart.Month) - datePaymentsStart.Day;
                 datePaymentsStart = datePaymentsStart.AddDays(next + 1);
             }
