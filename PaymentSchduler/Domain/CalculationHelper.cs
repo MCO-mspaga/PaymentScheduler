@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using PaymentSchduler.Models;
+
 
 namespace PaymentSchduler.Domain
 {
     public class CalculationHelper
     {
-
-  /*      public static decimal Calculate()
+        public static List<PaymentAndDate> GetPaymentBreakDown()
         {
-        
+            List<PaymentAndDate> paymentBreakDown = new List<PaymentAndDate>();
+
+            return paymentBreakDown;
+        }
+
+        private void PreparePaymentSchedule(List<PaymentAndDate> paymentBreakDown)
+        {
             DateTime date = DateTime.Now;
 
             date = date.AddMonths(1);
@@ -32,12 +37,13 @@ namespace PaymentSchduler.Domain
 
                 if (dateStarts.DayOfWeek == DayOfWeek.Monday)
                 {
-                    //add
+                   //add
                     int next = DateTime.DaysInMonth(dateStarts.Year, dateStarts.Month) - dateStarts.Day;
                     dateStarts = dateStarts.AddDays(next + 1);
                 }
             }
-        }*/
-
+        }
+        
+        
     }
 }

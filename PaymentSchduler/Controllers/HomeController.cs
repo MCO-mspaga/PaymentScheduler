@@ -53,11 +53,11 @@ namespace PaymentSchduler.Controllers
 
             decimal decreasingVehiclePrice = vehiclePrice;
 
-            for(int month = 1; month <= financialOptionInMonths; month++)
+            for (int month = 1; month <= financialOptionInMonths; month++)
             {
                 decimal monthlyCost = CalculateMonthlyPayments(vehiclePrice, financialOptionInMonths);
-                
-                if(month == 1)
+
+                if (month == 1)
                 {
                     decimal num = Math.Round(vehiclePrice % financialOptionInMonths, 2);
                 }
@@ -67,8 +67,8 @@ namespace PaymentSchduler.Controllers
                     if (decreasingVehiclePrice > monthlyCost || decreasingVehiclePrice < monthlyCost)
                     {
                         monthlyCost = decreasingVehiclePrice;
-                        decreasingVehiclePrice -= decreasingVehiclePrice;                      
-                    }                 
+                        decreasingVehiclePrice -= decreasingVehiclePrice;
+                    }
                     else
                     {
                         decreasingVehiclePrice -= monthlyCost;
@@ -76,7 +76,7 @@ namespace PaymentSchduler.Controllers
                 }
                 else
                 {
-                        decreasingVehiclePrice -= monthlyCost;
+                    decreasingVehiclePrice -= monthlyCost;
                 }
 
                 monthlyPayments.Add(monthlyCost);
@@ -91,9 +91,94 @@ namespace PaymentSchduler.Controllers
 
         private decimal SubtractPaymentFromVehiclePrice(decimal vehiclePrice, decimal monthlyCost)
         {
-          
-
             return monthlyCost;
+        }
+
+        private void PreparePaymentSchedule(decimal vehiclePrice, int financialOptionInMonths, DateTime deliveryDate)
+        {
+            List<PaymentAndDate> paymentScheduleBreakDown = new List<PaymentAndDate>();
+            DateTime datePaymentsStart = FindPaymentStartDate(deliveryDate);
+            // this is for payments
+            decimal decreasingVehiclePrice = vehiclePrice;
+            decimal monthlyPayment = CalculateMonthlyPayments(vehiclePrice, financialOptionInMonths);
+            //////
+
+            for (int month = 1; month <= financialOptionInMonths; month++)
+            {
+                PaymentAndDate paymentAndDate = new PaymentAndDate();
+
+                DateTime firstMondayOfMonth;
+
+                paymentAndDate.PaymentDate = FindFirstMondayOfMonth(datePaymentsStart, out firstMondayOfMonth);
+                
+                //for payments 
+                paymentAndDate.PaymentValue = monthlyPayment;
+           
+                if (month == financialOptionInMonths)
+                {
+                    if (decreasingVehiclePrice > paymentAndDate.PaymentValue || decreasingVehiclePrice < paymentAndDate.PaymentValue)
+                    {
+                        paymentAndDate.PaymentValue = decreasingVehiclePrice;
+                        decreasingVehiclePrice -= decreasingVehiclePrice;
+                    }
+                    else
+                    {
+                        decreasingVehiclePrice -= paymentAndDate.PaymentValue;
+                    }
+                }
+                else
+                {
+                    decreasingVehiclePrice -= paymentAndDate.PaymentValue;
+                }
+
+                paymentScheduleBreakDown.Add(paymentAndDate);
+
+            }
+        }
+
+        private decimal EnsureScheduleHasBeenCompletelyPaid(decimal decreasingVehiclePrice, decimal paymentValue)
+        {
+            if (decreasingVehiclePrice > paymentValue || decreasingVehiclePrice < paymentValue)
+            {
+                paymentValue = decreasingVehiclePrice;
+                decreasingVehiclePrice -= decreasingVehiclePrice;
+            }
+            else
+            {
+                decreasingVehiclePrice -= paymentValue;
+            }
+
+        }
+
+        private DateTime FindPaymentStartDate(DateTime deliveryDate)
+        {
+            deliveryDate = deliveryDate.AddMonths(1);
+
+            int start = DateTime.DaysInMonth(deliveryDate.Year, deliveryDate.Month) - deliveryDate.Day;
+
+            return deliveryDate.AddDays(start + 1);
+        }
+
+        private DateTime FindFirstMondayOfMonth(DateTime datePaymentsStart, out DateTime firstMonday)
+        {
+            datePaymentsStart = new DateTime(datePaymentsStart.Year, datePaymentsStart.Month, 1);
+
+            firstMonday = datePaymentsStart;
+
+            while (datePaymentsStart.DayOfWeek != DayOfWeek.Monday)
+            {
+                datePaymentsStart = datePaymentsStart.AddDays(1);
+            }
+
+            if (datePaymentsStart.DayOfWeek == DayOfWeek.Monday)
+            {
+                firstMonday = datePaymentsStart;
+
+                int next = DateTime.DaysInMonth(datePaymentsStart.Year, datePaymentsStart.Month) - datePaymentsStart.Day;
+                datePaymentsStart = datePaymentsStart.AddDays(next + 1);
+            }
+
+            return datePaymentsStart;
         }
     }
 }
