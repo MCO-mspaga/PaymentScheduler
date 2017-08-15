@@ -79,9 +79,6 @@ C:\IT DEVELOPMENT\Projects\FunProjects\PaymentSchduler\PaymentSchduler\bin\Micro
 C:\IT DEVELOPMENT\Projects\FunProjects\PaymentSchduler\PaymentSchduler\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\IT DEVELOPMENT\Projects\FunProjects\PaymentSchduler\PaymentSchduler\obj\Debug\PaymentSchduler.dll
 C:\IT DEVELOPMENT\Projects\FunProjects\PaymentSchduler\PaymentSchduler\obj\Debug\PaymentSchduler.pdb
-C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymentSchduler\obj\Debug\PaymentSchduler.csprojResolveAssemblyReference.cache
-C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymentSchduler\obj\Debug\PaymentSchduler.dll
-C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymentSchduler\obj\Debug\PaymentSchduler.pdb
 C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymentSchduler\bin\ApplicationInsights.config
 C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymentSchduler\bin\roslyn\csc.exe
 C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymentSchduler\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -161,3 +158,6 @@ C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymentSchduler\bin\Micr
 C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymentSchduler\bin\Microsoft.Owin.Security.Google.xml
 C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymentSchduler\bin\Microsoft.Owin.Security.Twitter.xml
 C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymentSchduler\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymentSchduler\obj\Debug\PaymentSchduler.dll
+C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymentSchduler\obj\Debug\PaymentSchduler.pdb
+C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymentSchduler\obj\Debug\PaymentSchduler.csprojResolveAssemblyReference.cache

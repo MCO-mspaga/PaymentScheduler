@@ -10,11 +10,7 @@ namespace PaymentSchduler.Domain
 
   /*      public static decimal Calculate()
         {
-
-            decimal value = model.VehiclePrice - model.DepositAmount;
-
-            decimal monthlyCost = Math.Round(model.VehiclePrice / model.FinanceOption);
-
+        
             DateTime date = DateTime.Now;
 
             date = date.AddMonths(1);

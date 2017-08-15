@@ -13,11 +13,11 @@ namespace PaymentSchduler.ViewModels
         {
             DateTime dateTime;
             var isValid = DateTime.TryParseExact(Convert.ToString(value),
-                "dd/MM/yyyy",
+                "dd/MM/yyyy hh:mm:ss",
                 CultureInfo.CurrentCulture,
                 DateTimeStyles.None,
                 out dateTime);
-
+            
             return (isValid && dateTime > DateTime.Now);
         }
     }

@@ -9,35 +9,36 @@ namespace PaymentSchduler.Models
 {
     public class PaymentSchedule
     {
-        public int Id { get; set; }
+
         [Required]
-        [Display(Name = "Deposit Amount")]
+        public decimal VehiclePrice { get; private set; }
+        [Required]
         public decimal DepositAmount { get; private set; }
 
-        [Display(Name = "Vehicle Price")]
-        [Required(ErrorMessage = "Value should be at least 15% of Vehicle Price")]
-        public decimal VehiclePrice { get; set; }
-
         [Required]
-        [DataType(DataType.Date)]
-        [Display(Name = "Delivery Date")]
-        [FutureDate(ErrorMessage = "Date should be in the future.")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime DeliveryDate { get; set; }
+        public DateTime DeliveryDate { get; private set; }
+        [Required]
+        public int FinanceOptionInMonths { get; private set; }
 
-        [Display(Name = "Financial Option")]
-        public int FinanceOption { get; set; }               
-
-
-
-        public void SetDepositAmount(decimal deposit)
+        public PaymentSchedule(PaymentScheduleViewModel paymentSchedule)
         {
-            decimal requiredDepositMin = VehiclePrice * 0.15m; 
+            decimal requiredDepositMin = paymentSchedule.VehiclePrice * 0.15m;
 
-            if(deposit >= requiredDepositMin)
-            {
-                DepositAmount = deposit;
-            }
+            if (paymentSchedule.DepositAmount < requiredDepositMin)
+                throw new Exception("Deposit must be 15% of vehicle price.");
+
+            VehiclePrice = paymentSchedule.VehiclePrice;
+            DepositAmount = paymentSchedule.DepositAmount;
+            DeliveryDate = paymentSchedule.DeliveryDate;
+
+            FinanceOptionInMonths = CalculateFinancialOptionInMonths(paymentSchedule.FinanceOption);
         }
+
+        private int CalculateFinancialOptionInMonths(int option)
+        {
+            int months = 12;
+            return option * months;
+        }
+        
     }
 }

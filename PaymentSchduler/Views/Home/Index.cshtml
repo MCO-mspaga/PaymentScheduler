@@ -1,4 +1,4 @@
-﻿@model PaymentSchduler.Models.PaymentSchedule
+﻿@model PaymentSchduler.ViewModels.PaymentScheduleViewModel
 
 
 
@@ -11,7 +11,7 @@
 {
 
     <p class="alert alert-info"> All fields are <strong>required. </strong> </p>
-    @Html.HiddenFor(m => m.Id)
+
     <div class="form-group">
         @Html.LabelFor(m => m.VehiclePrice)
         @Html.TextBoxFor(m => m.VehiclePrice, new { @class = "form-control" , autofocus = "autofocus" })
