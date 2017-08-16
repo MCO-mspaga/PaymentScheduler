@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using PaymentSchduler.Models;
 
 namespace PaymentSchduler.ViewModels
 {
@@ -22,5 +24,31 @@ namespace PaymentSchduler.ViewModels
 
         [Display(Name = "Financial Option")]
         public int FinanceOption { get; set; }
+        [Display(Name = "Deposit Percetage")]
+        public decimal DepositPercentage { get;  set; }
+        [Display(Name = "Frist Month Arrangement Fee")]
+        public decimal FirstMonthArrangementFee { get;  set; }
+        [Display(Name = "Final Month Arrangement Fee")]
+        public decimal FinalMonthArrangementFee { get;  set; }
+
+        public List<PaymentAndDate> PaymentDates { get; set; }
+
+        public bool IsCalculated { get; set; } = false;
+
+
+        public PaymentScheduleViewModel PrepareModelForDisplayingLoan(PaymentSchedule schedule, List<PaymentAndDate> paymentAndDate )
+        {
+            VehiclePrice = schedule.VehiclePrice;
+            DepositAmount = schedule.DepositAmount;
+            DeliveryDate = schedule.DeliveryDate;
+            FinanceOption = schedule.FinanceOptionInMonths;
+            DepositPercentage = schedule.DepositAmount;
+            FirstMonthArrangementFee = schedule.FirstMonthArrangementFee;
+            FinalMonthArrangementFee = schedule.FinanceOptionInMonths;
+            PaymentDates = paymentAndDate;
+            IsCalculated = true;
+
+            return this;
+        }
     }
 }
