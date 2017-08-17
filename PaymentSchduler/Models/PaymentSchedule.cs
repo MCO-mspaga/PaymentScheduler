@@ -32,14 +32,14 @@ namespace PaymentSchduler.Models
             decimal requiredDepositMin = paymentSchedule.VehiclePrice * DepositPercentage;
 
             if (paymentSchedule.DepositAmount < requiredDepositMin)
-                throw new Exception("Deposit must be " + DepositPercentage + "% of vehicle price.");
+                throw new HttpException("Deposit must be " + DepositPercentage + "% of vehicle price.");
 
             VehiclePrice = paymentSchedule.VehiclePrice;
             DepositAmount = paymentSchedule.DepositAmount;
             DeliveryDate = paymentSchedule.DeliveryDate;
-            DepositPercentage = paymentSchedule.DepositPercentage;
-            FirstMonthArrangementFee = paymentSchedule.FirstMonthArrangementFee;
-            FinalMonthArrangementFee = paymentSchedule.FinalMonthArrangementFee;
+            DepositPercentage = paymentSchedule.DepositPercentage != null ? (decimal)paymentSchedule.DepositPercentage  : 0;
+            FirstMonthArrangementFee = paymentSchedule.FirstMonthArrangementFee != null ? (decimal)paymentSchedule.FirstMonthArrangementFee : 0;
+            FinalMonthArrangementFee = paymentSchedule.FinalMonthArrangementFee != null ? (decimal)paymentSchedule.FinalMonthArrangementFee : 0; 
 
             FinanceOptionInMonths = CalculateFinancialOptionInMonths(paymentSchedule.FinanceOption);
         }

@@ -37,11 +37,15 @@ namespace PaymentSchduler.Domain
                 {
                     paymentAndDate.PaymentValue =
                         EnsureScheduleHasBeenCompletelyPaid(decreasingVehiclePrice,
-                            paymentAndDate.PaymentValue + paymentSchedule.FinalMonthArrangementFee);
+                            paymentAndDate.PaymentValue) + paymentSchedule.FinalMonthArrangementFee;
+                    decreasingVehiclePrice -= decreasingVehiclePrice;
                 }
+                else
+                {
+                    decreasingVehiclePrice -= monthlyPayment;
+                }                                
 
-                decreasingVehiclePrice -= paymentAndDate.PaymentValue;
-                paymentScheduleBreakDown.Add(paymentAndDate);
+               paymentScheduleBreakDown.Add(paymentAndDate);
             }
             return paymentScheduleBreakDown;
         }
