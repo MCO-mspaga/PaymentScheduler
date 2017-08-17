@@ -44,7 +44,45 @@ namespace PaymenScheduler.Tests
                 new PaymentAndDate { PaymentDate = CreateDate("03/09/2018"), PaymentValue = 90.87m },
             };
             #endregion 
+            
+            #region Act
+            ILoanGenerator generator = new LoanGenerator();
+            viewModel = generator.GenerateLoan(viewModel);
+            #endregion 
 
+            #region Assert
+            Assert.AreEqual(expectedModel, viewModel);
+            #endregion 
+        }
+
+
+        [TestMethod]
+        public void Test2()
+        {
+            #region Arrange
+            PaymentScheduleViewModel viewModel = new PaymentScheduleViewModel();
+            viewModel.VehiclePrice = 1000;
+            viewModel.DepositAmount = 150;
+            viewModel.FinanceOption = 1;
+            viewModel.DeliveryDate = CreateDate("17/08/2017");
+            PaymentScheduleViewModel expectedModel = viewModel;
+
+            expectedModel.PaymentDates = new List<PaymentAndDate>
+            {
+                new PaymentAndDate { PaymentDate = CreateDate("02/10/2017"), PaymentValue = 158.83m },
+                new PaymentAndDate { PaymentDate = CreateDate("06/11/2017"), PaymentValue = 70.83m },
+                new PaymentAndDate { PaymentDate = CreateDate("04/12/2017"), PaymentValue = 70.83m },
+                new PaymentAndDate { PaymentDate = CreateDate("01/01/2018"), PaymentValue = 70.83m },
+                new PaymentAndDate { PaymentDate = CreateDate("05/02/2018"), PaymentValue = 70.83m },
+                new PaymentAndDate { PaymentDate = CreateDate("05/03/2018"), PaymentValue = 70.83m },
+                new PaymentAndDate { PaymentDate = CreateDate("02/04/2018"), PaymentValue = 70.83m },
+                new PaymentAndDate { PaymentDate = CreateDate("07/05/2018"), PaymentValue = 70.83m },
+                new PaymentAndDate { PaymentDate = CreateDate("04/06/2018"), PaymentValue = 70.83m },
+                new PaymentAndDate { PaymentDate = CreateDate("02/07/2018"), PaymentValue = 70.83m },
+                new PaymentAndDate { PaymentDate = CreateDate("06/08/2018"), PaymentValue = 70.83m },
+                new PaymentAndDate { PaymentDate = CreateDate("03/09/2018"), PaymentValue = 90.87m },
+            };
+            #endregion
 
             #region Act
             ILoanGenerator generator = new LoanGenerator();
@@ -82,8 +120,7 @@ namespace PaymenScheduler.Tests
 
             //would have used isTrue but was throwing an error inside the test library. 
             Assert.AreEqual(expected, payment.IsValid);
-
-
+            
             #endregion
 
         }
