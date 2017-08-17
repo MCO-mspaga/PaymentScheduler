@@ -26,13 +26,13 @@ namespace PaymentSchduler.Models
 
         public decimal FinalMonthArrangementFee { get; private set; } = 20m;
 
+        public bool IsValid { get; private set; }
+
         public PaymentSchedule(PaymentScheduleViewModel paymentSchedule)
         {
             DepositPercentage /= 100;
             decimal requiredDepositMin = paymentSchedule.VehiclePrice * DepositPercentage;
-
-            if (paymentSchedule.DepositAmount < requiredDepositMin)
-                throw new HttpException("Deposit must be " + DepositPercentage + "% of vehicle price.");
+            IsValid = paymentSchedule.DepositAmount >= requiredDepositMin;            
 
             VehiclePrice = paymentSchedule.VehiclePrice;
             DepositAmount = paymentSchedule.DepositAmount;

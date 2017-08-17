@@ -30,14 +30,17 @@ namespace PaymentSchduler.Domain
                 PaymentAndDate paymentAndDate = new PaymentAndDate();
                 DateTime firstMondayOfMonth;
 
-                paymentAndDate.PaymentDate = FindFirstMondayOfMonth(datePaymentsStart, out firstMondayOfMonth);
+                datePaymentsStart = FindFirstMondayOfMonth(datePaymentsStart, out firstMondayOfMonth);
+                paymentAndDate.PaymentDate = firstMondayOfMonth;
+
                 paymentAndDate.PaymentValue = month == 1 ? monthlyPayment + paymentSchedule.FirstMonthArrangementFee : monthlyPayment;
 
                 if (month == paymentSchedule.FinanceOptionInMonths)
                 {
-                    paymentAndDate.PaymentValue =
-                        EnsureScheduleHasBeenCompletelyPaid(decreasingVehiclePrice,
-                            paymentAndDate.PaymentValue) + paymentSchedule.FinalMonthArrangementFee;
+                    paymentAndDate.PaymentValue = EnsureScheduleHasBeenCompletelyPaid(
+                        decreasingVehiclePrice, paymentAndDate.PaymentValue) 
+                        + paymentSchedule.FinalMonthArrangementFee;
+
                     decreasingVehiclePrice -= decreasingVehiclePrice;
                 }
                 else
@@ -71,19 +74,30 @@ namespace PaymentSchduler.Domain
 
             firstMonday = datePaymentsStart;
 
-            while (datePaymentsStart.DayOfWeek != DayOfWeek.Monday)
-            {
-                datePaymentsStart = datePaymentsStart.AddDays(1);
-            }
+            datePaymentsStart = FindNextMonday(datePaymentsStart);
 
             if (datePaymentsStart.DayOfWeek == DayOfWeek.Monday)
             {
                 firstMonday = datePaymentsStart;
-                int next = DateTime.DaysInMonth(datePaymentsStart.Year, datePaymentsStart.Month) - datePaymentsStart.Day;
-                datePaymentsStart = datePaymentsStart.AddDays(next + 1);
+                datePaymentsStart = MoveToNextMonth(datePaymentsStart);
             }
 
             return datePaymentsStart;
+        }
+
+        private DateTime FindNextMonday(DateTime datePaymentsStart)
+        {
+            while (datePaymentsStart.DayOfWeek != DayOfWeek.Monday)
+            {
+                datePaymentsStart = datePaymentsStart.AddDays(1);
+            }
+            return datePaymentsStart;
+        }
+
+        private DateTime MoveToNextMonth(DateTime datePaymentsStart)
+        {
+            int followingMonth = DateTime.DaysInMonth(datePaymentsStart.Year, datePaymentsStart.Month) - datePaymentsStart.Day;
+            return datePaymentsStart.AddDays(followingMonth + 1);
         }
 
 

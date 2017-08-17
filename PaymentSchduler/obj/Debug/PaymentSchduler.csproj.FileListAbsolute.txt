@@ -160,4 +160,3 @@ C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymentSchduler\bin\Micr
 C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymentSchduler\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymentSchduler\obj\Debug\PaymentSchduler.dll
 C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymentSchduler\obj\Debug\PaymentSchduler.pdb
-C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymentSchduler\obj\Debug\PaymentSchduler.csprojResolveAssemblyReference.cache

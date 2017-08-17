@@ -28,10 +28,11 @@ namespace PaymentSchduler.Controllers
                 return View("Index", viewModel);
             }
             ILoanGenerator generator = new LoanGenerator();
+            
 
             viewModel = generator.GenerateLoan(viewModel);
             
-                        
+                       
             return View("Index", viewModel);
         }
      

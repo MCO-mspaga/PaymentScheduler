@@ -33,9 +33,8 @@ namespace PaymentSchduler.ViewModels
 
         public List<PaymentAndDate> PaymentDates { get; set; }
 
-        public bool IsCalculated { get; set; } = false;
-
-
+        public bool IsValid { get; set; }
+        
         public PaymentScheduleViewModel PrepareModelForDisplayingLoan(PaymentSchedule schedule, List<PaymentAndDate> paymentAndDate)
         {
             VehiclePrice = schedule.VehiclePrice;
@@ -46,7 +45,7 @@ namespace PaymentSchduler.ViewModels
             FirstMonthArrangementFee = schedule.FirstMonthArrangementFee;
             FinalMonthArrangementFee = schedule.FinanceOptionInMonths;
             PaymentDates = paymentAndDate;
-            IsCalculated = true;
+            IsValid = schedule.IsValid;
 
             return this;
         }

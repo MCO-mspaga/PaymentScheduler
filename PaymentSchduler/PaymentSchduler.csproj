@@ -197,9 +197,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Domain\Interface\ILoanGenerator.cs" />
-    <Compile Include="Domain\Interface\IPaymentSchedulizer.cs" />
     <Compile Include="Domain\LoanGenerator.cs" />
-    <Compile Include="Domain\PaymentSchedulizer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
