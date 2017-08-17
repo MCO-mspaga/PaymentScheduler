@@ -2,6 +2,7 @@
 
 
 
+
 <h2> Payment Schedule </h2>
 
 <div class="topPanel">
@@ -24,6 +25,11 @@
                 @Html.LabelFor(m => m.DepositAmount)
                 @Html.TextBoxFor(m => m.DepositAmount, new { @class = "form-control", placeholder = "eg 300" })
                 @Html.ValidationMessageFor(m => m.DepositAmount)
+                @if (ViewBag.Message != null)
+                {
+                <span>@ViewBag.Message</span>
+                }
+
             </div>
 
 
@@ -44,10 +50,13 @@
                 @Html.ValidationMessageFor(m => m.DeliveryDate)
             </div>
 
+
+
             <div class="form-group">
                 @Html.LabelFor(m => m.DepositPercentage)
-                @Html.EditorFor(m => m.DepositPercentage, new { htmlAttributes = new { @class = "form-control" }, placeholder = "eg 15" })
+                @Html.EditorFor(m => m.DepositPercentage, new { htmlAttributes = new { @class = "form-control", placeholder = "eg 15" } })
             </div>
+
 
             <div class="form-group">
                 @Html.LabelFor(m => m.FirstMonthArrangementFee)
@@ -59,52 +68,76 @@
                 @Html.EditorFor(m => m.FinalMonthArrangementFee, new { htmlAttributes = new { @class = "form-control", placeholder = "eg 20" } })
             </div>
 
+
             <button type="submit" class="btn btn-primary btn-lg">Submit</button>
 
 
-          
+
                     }
     </div>
 
     <div class="rightPanel">
-        
+
 
         @if (Model != null)
         {
 
             <h2 class="loan"> Loan Summary </h2>
+            <hr>
 
             <div class="summary">
 
-                <div class="form-group">
-                    @Html.LabelFor(m => m.VehiclePrice)
-                   <p>£</p> @Html.DisplayFor(m => m.VehiclePrice)
-                    
+                <div class="summary-group">
+                    <p>@Html.LabelFor(m => m.VehiclePrice) : £ @Html.DisplayFor(m => m.VehiclePrice) </p>
 
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.DepositPercentage)
-                    @Html.DisplayFor(m => m.DepositPercentage)
+                <div class="summary-group">
+                    <p> @Html.LabelFor(m => m.DepositAmount) : £ @Html.DisplayFor(m => m.DepositAmount)</p>
                 </div>
 
-                <ul class="summary">
+                <div class="summary-group">
+                    <p> @Html.LabelFor(m => m.DeliveryDate): @Html.DisplayFor(m => m.DeliveryDate)</p>
+                </div>
+
+                <div class="summary-group">
+                    <p> @Html.LabelFor(m => m.FinanceOption): @Html.DisplayFor(m => m.FinanceOption)</p>
+                </div>
+
+                <div class="summary-group">
+                    <p> @Html.LabelFor(m => m.DepositPercentage) :    @Html.DisplayFor(m => m.DepositPercentage) </p>
+
+                </div>
+
+                <div class="summary-group">
+                    <p> @Html.LabelFor(m => m.FirstMonthArrangementFee) : @Html.DisplayFor(m => m.FirstMonthArrangementFee)</p>
+
+                </div>
+
+                <div class="summary-group">
+                    <p> @Html.LabelFor(m => m.FinalMonthArrangementFee) : @Html.DisplayFor(m => m.FinalMonthArrangementFee)</p>
+                </div>
+
+
+                <ul class="breakdown">
+                    <h2 class="breakdownHeader"> Payment Breakdown</h2>
+                    <hr>
+
                     @foreach (var schedule in Model.PaymentDates)
                     {
 
                         <li>
-                            <div class="date">
+                            <div class="payment">
                                 <div class="month">
                                     <h5> Payment Date: @schedule.PaymentDate.ToString("dd/MM/yyyy")   </h5>
-                                   
                                 </div>
-                                <div class="cost">
+                                <div class="month">
                                     <h5> Payment Value: £ @schedule.PaymentValue</h5>
 
-                                    <br />
-
                                 </div>
-                            </div>
 
+                                <hr>
+
+                            </div>
                         </li>
                     }
 

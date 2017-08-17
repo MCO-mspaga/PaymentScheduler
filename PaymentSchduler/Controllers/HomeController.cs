@@ -31,6 +31,12 @@ namespace PaymentSchduler.Controllers
             
 
             viewModel = generator.GenerateLoan(viewModel);
+
+            if (!viewModel.IsValid)
+            {            
+                ViewBag.Message = "The Deposit does not reach the minimum required.";
+                return View("Index");
+            }
             
                        
             return View("Index", viewModel);

@@ -40,10 +40,11 @@ namespace PaymentSchduler.ViewModels
             VehiclePrice = schedule.VehiclePrice;
             DepositAmount = schedule.DepositAmount;
             DeliveryDate = schedule.DeliveryDate;
-            FinanceOption = schedule.FinanceOptionInMonths;
+            int months = 12;
+            FinanceOption = schedule.FinanceOptionInMonths / months;
             DepositPercentage = schedule.DepositAmount;
             FirstMonthArrangementFee = schedule.FirstMonthArrangementFee;
-            FinalMonthArrangementFee = schedule.FinanceOptionInMonths;
+            FinalMonthArrangementFee = schedule.FinalMonthArrangementFee;
             PaymentDates = paymentAndDate;
             IsValid = schedule.IsValid;
 
