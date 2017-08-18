@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using PaymentSchduler.Models;
-using PaymentSchduler.ViewModels;
 using PaymentSchduler.Domain.Interface;
 
 
