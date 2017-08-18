@@ -32,23 +32,7 @@ namespace PaymentSchduler.ViewModels
         public decimal? FinalMonthArrangementFee { get; set; } 
 
         public List<PaymentAndDate> PaymentDates { get; set; }
-
-        public bool IsValid { get; set; }
-        
-        public PaymentScheduleViewModel PrepareModelForDisplayingLoan(PaymentSchedule schedule, List<PaymentAndDate> paymentAndDate)
-        {
-            VehiclePrice = schedule.VehiclePrice;
-            DepositAmount = schedule.DepositAmount;
-            DeliveryDate = schedule.DeliveryDate;
-            int months = 12;
-            FinanceOption = schedule.FinanceOptionInMonths / months;
-            DepositPercentage = schedule.DepositAmount;
-            FirstMonthArrangementFee = schedule.FirstMonthArrangementFee;
-            FinalMonthArrangementFee = schedule.FinalMonthArrangementFee;
-            PaymentDates = paymentAndDate;
-            IsValid = schedule.IsValid;
-
-            return this;
-        }
+       
+     
     }
 }

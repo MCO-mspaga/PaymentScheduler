@@ -37,9 +37,9 @@ namespace PaymentSchduler.Models
             VehiclePrice = paymentSchedule.VehiclePrice;
             DepositAmount = paymentSchedule.DepositAmount;
             DeliveryDate = paymentSchedule.DeliveryDate;
-            DepositPercentage = paymentSchedule.DepositPercentage != null ? (decimal)paymentSchedule.DepositPercentage  : 0;
-            FirstMonthArrangementFee = paymentSchedule.FirstMonthArrangementFee != null ? (decimal)paymentSchedule.FirstMonthArrangementFee : 0;
-            FinalMonthArrangementFee = paymentSchedule.FinalMonthArrangementFee != null ? (decimal)paymentSchedule.FinalMonthArrangementFee : 0; 
+            DepositPercentage = paymentSchedule.DepositPercentage != null ? (decimal)paymentSchedule.DepositPercentage  : DepositPercentage;
+            FirstMonthArrangementFee = paymentSchedule.FirstMonthArrangementFee != null ? (decimal)paymentSchedule.FirstMonthArrangementFee : FirstMonthArrangementFee;
+            FinalMonthArrangementFee = paymentSchedule.FinalMonthArrangementFee != null ? (decimal)paymentSchedule.FinalMonthArrangementFee : FinalMonthArrangementFee; 
 
             FinanceOptionInMonths = CalculateFinancialOptionInMonths(paymentSchedule.FinanceOption);
         }

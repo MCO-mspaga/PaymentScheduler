@@ -8,13 +8,7 @@ namespace PaymentSchduler.Controllers
 {
     public class HomeController : Controller
     {
-        public readonly ApplicationDbContext _context;
-
-        public HomeController()
-        {
-            _context = new ApplicationDbContext();
-        }
-
+        
         public ActionResult Index()
         {
             return View();
@@ -27,19 +21,34 @@ namespace PaymentSchduler.Controllers
             {
                 return View("Index", viewModel);
             }
-            ILoanGenerator generator = new LoanGenerator();
-            
 
-            viewModel = generator.GenerateLoan(viewModel);
+            PaymentSchedule paymentSchedule = new PaymentSchedule(viewModel);
 
-            if (!viewModel.IsValid)
-            {            
+            if (!paymentSchedule.IsValid)
+            {
                 ViewBag.Message = "The Deposit does not reach the minimum required.";
                 return View("Index");
             }
-            
-                       
+
+            IPaymentPlanGenerator generator = new PaymentPlanGenerator(paymentSchedule);
+            viewModel.PaymentDates = generator.GeneratePlan();
+            PopulateNonRequiredFields(viewModel, paymentSchedule);
+
             return View("Index", viewModel);
+        }
+
+        private void PopulateNonRequiredFields(PaymentScheduleViewModel viewModel, PaymentSchedule paymentSchedule)
+        {
+            viewModel.FirstMonthArrangementFee = PopulateFieldIfRequired(viewModel.FirstMonthArrangementFee, paymentSchedule.FirstMonthArrangementFee);
+
+            viewModel.FinalMonthArrangementFee = PopulateFieldIfRequired(viewModel.FinalMonthArrangementFee, paymentSchedule.FinalMonthArrangementFee);
+
+            viewModel.DepositPercentage = PopulateFieldIfRequired(viewModel.DepositPercentage, paymentSchedule.DepositPercentage);      
+        }
+
+        private decimal PopulateFieldIfRequired(decimal? emptyField, decimal populatedField)
+        {
+            return emptyField == null ? populatedField : (decimal)emptyField;
         }
      
     }

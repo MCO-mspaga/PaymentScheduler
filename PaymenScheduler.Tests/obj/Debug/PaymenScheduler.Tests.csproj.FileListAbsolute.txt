@@ -18,13 +18,7 @@ C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bi
 C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bin\Debug\Microsoft.Owin.dll
 C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bin\Debug\System.Web.Optimization.dll
 C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bin\Debug\System.Web.Mvc.dll
-C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bin\Debug\Microsoft.AspNet.Identity.Core.dll
-C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bin\Debug\Microsoft.AspNet.Identity.Owin.dll
-C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bin\Debug\Microsoft.Owin.Security.dll
 C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bin\Debug\Owin.dll
-C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bin\Debug\Microsoft.Owin.Security.Cookies.dll
-C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
-C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bin\Debug\EntityFramework.dll
 C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bin\Debug\Microsoft.Web.Infrastructure.dll
 C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bin\Debug\System.Web.Razor.dll
 C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bin\Debug\System.Web.WebPages.Razor.dll
@@ -34,12 +28,6 @@ C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bi
 C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bin\Debug\Microsoft.Owin.xml
 C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bin\Debug\System.Web.Optimization.xml
 C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bin\Debug\System.Web.Mvc.xml
-C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bin\Debug\Microsoft.AspNet.Identity.Core.xml
-C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bin\Debug\Microsoft.AspNet.Identity.Owin.xml
-C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bin\Debug\Microsoft.Owin.Security.xml
-C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bin\Debug\Microsoft.Owin.Security.Cookies.xml
-C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bin\Debug\EntityFramework.xml
 C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bin\Debug\System.Web.Razor.xml
 C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bin\Debug\System.Web.WebPages.Razor.xml
 C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymenScheduler.Tests\bin\Debug\System.Web.WebPages.xml
