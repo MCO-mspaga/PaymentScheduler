@@ -17,12 +17,12 @@ namespace PaymentSchduler.Controllers
         [HttpPost]
         public ActionResult Create(PaymentScheduleViewModel viewModel)
         {
-            if (!ModelState.IsValid)
+           /* if (!ModelState.IsValid)
             {
                 return View("Index", viewModel);
-            }
+            }*/
 
-            PaymentSchedule paymentSchedule = new PaymentSchedule(viewModel);
+            var paymentSchedule = new PaymentSchedule(viewModel);
 
             if (!paymentSchedule.IsValid)
             {
@@ -30,7 +30,7 @@ namespace PaymentSchduler.Controllers
                 return View("Index");
             }
 
-            IPaymentPlanGenerator generator = new PaymentPlanGenerator(paymentSchedule);
+            var generator = new PaymentPlanGenerator(paymentSchedule);
             viewModel.PaymentDates = generator.GeneratePlan();
             PopulateNonRequiredFields(viewModel, paymentSchedule);
 

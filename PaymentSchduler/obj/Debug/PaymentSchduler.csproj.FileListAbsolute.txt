@@ -241,3 +241,4 @@ C:\projects\PaymentScheduler\PaymentSchduler\bin\Microsoft.Owin.Security.Twitter
 C:\projects\PaymentScheduler\PaymentSchduler\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\projects\PaymentScheduler\PaymentSchduler\obj\Debug\PaymentSchduler.dll
 C:\projects\PaymentScheduler\PaymentSchduler\obj\Debug\PaymentSchduler.pdb
+C:\IT DEVELOPMENT\Projects\FunProjects\PaymentScheduler\PaymentSchduler\obj\Debug\PaymentSchduler.csprojResolveAssemblyReference.cache
