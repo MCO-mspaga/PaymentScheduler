@@ -10,6 +10,7 @@ namespace PaymentSchduler.Domain
     {
         private decimal value;
         private int duration;
+        private const float DECIMALPLACES = 2;
 
         public List<decimal> Payment
         {
@@ -36,8 +37,6 @@ namespace PaymentSchduler.Domain
 
         private void CalcStandardPayment()
         {
-            var decimalPlaces = 2;
-
             Payment.AddRange(
                 Enumerable.Repeat(
                     Math.Round(value / duration, decimalPlaces), duration));            
